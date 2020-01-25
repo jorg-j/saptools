@@ -20,24 +20,12 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
 logger = logging.getLogger(__name__)
 logger.info('Starting saptools')
 
-#-----------------------------------------------------------------------
-
-############################ Configuration #############################
-
-try:
-    with open('config.json') as json_file:
-        Config = json.load(json_file)
-        logger.info('Config Imported')
-except:
-    Config = {}
-    logger.warning('No Config Found')
-
 
 #-----------------------------------------------------------------------
 
 ############################# Connection ###############################
 
-def SAPConnect():
+def SAPConnect(SessionID=0):
     try:
         logger.info('Connecting to SAP')
         SapGuiAuto = win32com.client.GetObject("SAPGUI")
@@ -48,7 +36,7 @@ def SAPConnect():
         if not type(application) == win32com.client.CDispatch:
             application = None
             SapGuiAuto = None
-        session = connection.Children(0)  # set session 1 of SAP
+        session = connection.Children(SessionID)  # set session 1 of SAP
         if not type(application) == win32com.client.CDispatch:
             connection = None
             application = None
@@ -59,4 +47,4 @@ def SAPConnect():
     except:
         print(sys.exc_info()[0])
         logger.critical('SAP Connection Failed')
-        return "fault"
+        return "Disconnected"
