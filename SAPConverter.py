@@ -5,7 +5,7 @@ https://github.com/jorg-j/
 Date: 25-01-2020
 
 Dependencies:
-    tkinter
+    tkinter - for file dialog
 
 '''
 
@@ -63,13 +63,13 @@ def vbsConverter(SAPVB):
     Args: SAPVB (String, NonOptional)
     Returns: SAPVB (String, NonOptional)
     '''
-    bracketer = [
+    needsBrackets : list = [
         '.press', '.maximize',
         '.doubleClickCurrentCell',
         '.select', '.setFocus'
     ]
 
-    for action in bracketer:
+    for action in needsBrackets:
         if SAPVB.endswith(action):
             return SAPVB + '()'
 
