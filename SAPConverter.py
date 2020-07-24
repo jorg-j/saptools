@@ -51,7 +51,7 @@ def ReadData(filepath):
         '''read in data'''
         data = f.read()
         data = data.split('\n')
-        return data
+    return data
 
 
 #-----------------------------------------------------------------------
