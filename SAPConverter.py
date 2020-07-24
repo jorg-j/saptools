@@ -9,6 +9,7 @@ Dependencies:
 
 '''
 
+import doctest
 from tkinter import *
 from tkinter import filedialog
 
@@ -21,7 +22,8 @@ Convert SAP VBS code to py format
 ######################### Write/Append to File #########################
 
 def writer(line, Mode='a+', OutName='outfile.py'):
-    ''' Handles the writing to file of translated information.
+    ''' 
+    Handles the writing to file of translated information.
     Args: line(str, nonoptional) Write data
     Mode(str, optional) file mode, default append
     OutName(str, optional) filename to save as
@@ -62,6 +64,16 @@ def vbsConverter(SAPVB):
     '''convert SAP VBS to Python.
     Args: SAPVB (String, NonOptional)
     Returns: SAPVB (String, NonOptional)
+
+    >>> vbsConverter('session.findById("wnd[0]").sendVKey 0')
+    'session.findById("wnd[0]").sendVKey (0)'
+
+    >>> vbsConverter('click.press')
+    'click.press()'
+
+    >>> vbsConverter('click.setFocus')
+    'click.setFocus()'
+
     '''
     needsBrackets : list = [
         '.press', '.maximize',
@@ -100,4 +112,25 @@ def main():
     writer(line='except:')
     writer(line='    print(sys.exc_info()[0])')
 
+
 main()
+
+#-----------------------------------------------------------------------
+
+################################# Tests ################################
+
+def test1():
+    needsBrackets = [
+        '.press', '.maximize',
+        '.doubleClickCurrentCell',
+        '.select', '.setFocus'
+    ]
+    for item in needsBrackets:
+        result = vbsConverter(f'check{item}')
+        assert result == f'check{item}()'
+
+def test2():
+    assert vbsConverter('session.findById("wnd[0]").sendVKey 0') == 'session.findById("wnd[0]").sendVKey (0)'
+
+
+# doctest.testmod()
