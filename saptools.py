@@ -2,7 +2,7 @@
 Useage: Global Module
 Author: jorg-j
 https://github.com/jorg-j/
-Date: 25-01-2020
+Date: 2020-11-02
 
 Dependencies:
     pywin32
@@ -16,18 +16,10 @@ import datetime
 import json
 import logging
 
-logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',filename='app.log',filemode='a',level=logging.INFO)
+logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',filename='SAP.log',filemode='a',level=logging.INFO)
 logger = logging.getLogger(__name__)
 logger.info('Starting saptools')
 
-print('''
-███████╗ █████╗ ██████╗ ████████╗ ██████╗  ██████╗ ██╗     ███████╗
-██╔════╝██╔══██╗██╔══██╗╚══██╔══╝██╔═══██╗██╔═══██╗██║     ██╔════╝
-███████╗███████║██████╔╝   ██║   ██║   ██║██║   ██║██║     ███████╗
-╚════██║██╔══██║██╔═══╝    ██║   ██║   ██║██║   ██║██║     ╚════██║
-███████║██║  ██║██║        ██║   ╚██████╔╝╚██████╔╝███████╗███████║
-╚══════╝╚═╝  ╚═╝╚═╝        ╚═╝    ╚═════╝  ╚═════╝ ╚══════╝╚══════╝
-''')
 
 #-----------------------------------------------------------------------
 
