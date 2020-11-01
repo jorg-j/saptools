@@ -1,0 +1,5 @@
+.press
+.maximize
+.doubleClickCurrentCell
+.select
+.setFocus

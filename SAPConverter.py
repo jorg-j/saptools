@@ -22,13 +22,6 @@ Convert SAP VBS code to py format
 ######################### Write/Append to File #########################
 
 def writer(line, Mode='a+', OutName='outfile.py'):
-    ''' 
-    Handles the writing to file of translated information.
-    Args: 
-      line(str, nonoptional) Write data
-      Mode(str, optional) file mode, default append
-      OutName(str, optional) filename to save as
-    '''
     with open(OutName, Mode)as f:
         f.write(line)
         f.write('\n')
@@ -50,7 +43,6 @@ def DocumentSelect():
 ############################## Read File ##############################
 
 def ReadData(filepath):
-    '''read in data'''
     with open(filepath, 'r')as f:
         data = f.read()
     data = data.split('\n')
@@ -59,6 +51,7 @@ def ReadData(filepath):
 #-----------------------------------------------------------------------
 
 ######################### VBS Converter Rules ##########################
+
 
 def vbsConverter(SAPVB):
     '''convert SAP VBS to Python.
@@ -75,13 +68,16 @@ def vbsConverter(SAPVB):
     'click.setFocus()'
 
     '''
-    needsBrackets : list = [
-        '.press', '.maximize',
-        '.doubleClickCurrentCell',
-        '.select', '.setFocus'
-    ]
+    needsParenthesis = []
 
-    for action in needsBrackets:
+    with open('config/parenthesis.txt', 'r') as f:
+        filecontents = f.readlines()
+
+        for line in filecontents:
+            current_place = line.replace('\n', '')
+            needsParenthesis.append(current_place)
+
+    for action in needsParenthesis:
         if SAPVB.endswith(action):
             return SAPVB + '()'
 
@@ -89,7 +85,6 @@ def vbsConverter(SAPVB):
         SplitLine = SAPVB.split(' ')
         SplitLine[1] = '(' + SplitLine[1] + ')'
         return " ".join(SplitLine)
-
     else:
         return SAPVB
 
@@ -120,12 +115,12 @@ main()
 ################################# Tests ################################
 
 def test1():
-    needsBrackets = [
+    needsParenthesis = [
         '.press', '.maximize',
         '.doubleClickCurrentCell',
         '.select', '.setFocus'
     ]
-    for item in needsBrackets:
+    for item in needsParenthesis:
         result = vbsConverter(f'check{item}')
         assert result == f'check{item}()'
 
