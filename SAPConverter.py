@@ -2,7 +2,7 @@
 Useage: Global Module
 Author: jorg-j
 https://github.com/jorg-j/
-Date: 24-07-2020
+Date: 2020-11-02
 
 Dependencies:
     tkinter - for file dialog
@@ -24,9 +24,10 @@ Convert SAP VBS code to py format
 def writer(line, Mode='a+', OutName='outfile.py'):
     ''' 
     Handles the writing to file of translated information.
-    Args: line(str, nonoptional) Write data
-    Mode(str, optional) file mode, default append
-    OutName(str, optional) filename to save as
+    Args: 
+      line(str, nonoptional) Write data
+      Mode(str, optional) file mode, default append
+      OutName(str, optional) filename to save as
     '''
     with open(OutName, Mode)as f:
         f.write(line)
@@ -49,12 +50,11 @@ def DocumentSelect():
 ############################## Read File ##############################
 
 def ReadData(filepath):
+    '''read in data'''
     with open(filepath, 'r')as f:
-        '''read in data'''
         data = f.read()
     data = data.split('\n')
     return data
-
 
 #-----------------------------------------------------------------------
 
