@@ -1,33 +1,42 @@
+#!/usr/bin/python3
 '''
 Useage: Global Module
 Author: jorg-j
 https://github.com/jorg-j/
-Date: 2020-11-02
+Date: 2020-11-17
 
 Dependencies:
     pywin32
+
+Currently Tested on SAP GUI 7
 '''
 
-import os
-import time
-import sys
-import win32com.client
 import datetime
 import json
 import logging
+import os
+import sys
+import time
 
-logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',filename='SAP.log',filemode='a',level=logging.INFO)
+import win32com.client
+
+logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+                    filename='SAP.log', filemode='a', level=logging.INFO)
 logger = logging.getLogger(__name__)
 logger.info('Starting saptools')
 
 
-#-----------------------------------------------------------------------
+# -----------------------------------------------------------------------
 
 ############################# Connection ###############################
 
 def SAPConnect(SessionID=0):
+    """
+    Manages connection between Py and SAP
+    """
+
     try:
-        logger.info('Connecting to SAP')
+        logger.info("Connecting to SAP")
         SapGuiAuto = win32com.client.GetObject("SAPGUI")
         application = SapGuiAuto.GetScriptingEngine
         if not type(application) == win32com.client.CDispatch:
@@ -41,10 +50,10 @@ def SAPConnect(SessionID=0):
             connection = None
             application = None
             SapGuiAuto = None
-        logger.info('SAP Connected')
+        logger.info("SAP Connected")
         return session
 
     except:
         print(sys.exc_info()[0])
-        logger.critical('SAP Connection Failed')
+        logger.critical("SAP Connection Failed")
         return "Disconnected"

@@ -2,10 +2,12 @@
 
 Python SAP integration. 
 
-Conversion from VBS to Py
 
-SAPConverter will take VBS recorded through SAP's built in GUI recorder and convert it into Python compatible code.
-Run SAPConverter.py open the file for conversion and the output file will contain code you can drag and drop into your project.
+## VBS Conversion
+
+SAPConverter.py takes SAP GUI scripts and converts to drag and drop py.
+
+Run SAPConverter.py open the file for conversion and outfile.py file will contain code you can drag and drop into your project.
 
 ## Connection to SAP
 
