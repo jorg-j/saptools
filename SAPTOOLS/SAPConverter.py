@@ -3,11 +3,10 @@
 Useage: Global Module
 Author: jorg-j
 https://github.com/jorg-j/
-Date: 2020-11-17
+Date: 2021-04-02
 
 '''
 
-import doctest
 from tkinter import *
 from tkinter import filedialog
 
@@ -110,26 +109,5 @@ def main():
     writer(line='    print(sys.exc_info()[0])')
 
 
-main()
-
-# -----------------------------------------------------------------------
-
-################################# Tests ################################
-
-
-def test1():
-    needsParenthesis = [
-        '.press', '.maximize',
-        '.doubleClickCurrentCell',
-        '.select', '.setFocus'
-    ]
-    for item in needsParenthesis:
-        result = vbsConverter(f'check{item}')
-        assert result == f'check{item}()'
-
-
-def test2():
-    assert vbsConverter(
-        'session.findById("wnd[0]").sendVKey 0') == 'session.findById("wnd[0]").sendVKey (0)'
-
-# doctest.testmod()
+if __name__ == "__main__":
+    main()
