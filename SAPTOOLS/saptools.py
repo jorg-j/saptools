@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-'''
+"""
 Useage: Global Module
 Author: jorg-j
 https://github.com/jorg-j/
@@ -9,26 +9,28 @@ Dependencies:
     pywin32
 
 Currently Tested on SAP GUI 7
-'''
+"""
 
-import datetime
-import json
+
 import logging
-import os
 import sys
-import time
 
 import win32com.client
 
-logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-                    filename='SAP.log', filemode='a', level=logging.INFO)
+logging.basicConfig(
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+    filename="SAP.log",
+    filemode="a",
+    level=logging.INFO,
+)
 logger = logging.getLogger(__name__)
-logger.info('Starting saptools')
+logger.info("Starting saptools")
 
 
 # -----------------------------------------------------------------------
 
 ############################# Connection ###############################
+
 
 def SAPConnect(SessionID=0):
     """
