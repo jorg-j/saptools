@@ -16,28 +16,35 @@ from src.argHandling import *
 
 def getDocument():
     data = args.f
+    outfile = args.o
+
     if not data:
         data = DocumentSelect()
-    return data
+    if not outfile:
+        outfile = "outfile.py"
+    if outfile.endswith(".py") == False:
+        outfile += ".py"
+    
+    return data, outfile
 
 
 def main():
     # Get document to process
-    data = getDocument()
+    data, outfile = getDocument()
     if not data:
         raise SystemError
 
     # Write SAP Connection to file as new.
-    writer(line="import saptools\n\nsession = saptools.SAPConnect()\n\ntry:", Mode="w")
+    writer(line="import saptools\n\nsession = saptools.SAPConnect()\n\ntry:", Mode="w", OutName=outfile)
 
     # Write each line to file using the saptools.vbsconverter
     for line in data:
         if "session.findById" in line:
-            writer(line="    " + vbsConverter(SAPVB=line))
+            writer(line="    " + vbsConverter(SAPVB=line), OutName=outfile)
 
     # Write closing statements to document.
-    writer(line="except:")
-    writer(line="    print(sys.exc_info()[0])")
+    writer(line="except:", OutName=outfile)
+    writer(line="    print(sys.exc_info()[0])", OutName=outfile)
 
 
 if __name__ == "__main__":
