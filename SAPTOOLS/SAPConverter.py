@@ -24,7 +24,7 @@ def getDocument():
         outfile = "outfile.py"
     if outfile.endswith(".py") == False:
         outfile += ".py"
-    
+
     return data, outfile
 
 
@@ -35,7 +35,11 @@ def main():
         raise SystemError
 
     # Write SAP Connection to file as new.
-    writer(line="import saptools\n\nsession = saptools.SAPConnect()\n\ntry:", Mode="w", OutName=outfile)
+    writer(
+        line="import saptools\n\nsession = saptools.SAPConnect()\n\ntry:",
+        Mode="w",
+        OutName=outfile,
+    )
 
     # Write each line to file using the saptools.vbsconverter
     for line in data:
