@@ -9,6 +9,14 @@ SAPConverter.py takes SAP GUI scripts and converts to drag and drop py.
 
 Run SAPConverter.py open the file for conversion and outfile.py file will contain code you can drag and drop into your project.
 
+For CLI interaction:
+
+```
+SAPConverter.py -f myInFile.vbs -o myOutFile.py
+```
+
+-f and -o are optional and each option will fall back to it's default if not used
+
 ## Connection to SAP
 
 saptools.py handles the connection to SAP.
