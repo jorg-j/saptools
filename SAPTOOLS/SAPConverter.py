@@ -7,7 +7,7 @@ Date: 2021-04-02
 Convert SAP VBS code to py format
 """
 
-from src.documentHandling import writer, DocumentSelect
+from src.documentHandling import writer, DocumentSelect, ReadData
 from src.rules import vbsConverter
 from src.argHandling import *
 
@@ -20,6 +20,7 @@ def getDocument():
 
     if not data:
         data = DocumentSelect()
+    data = ReadData(data)
     if not outfile:
         outfile = "outfile.py"
     if outfile.endswith(".py") == False:
