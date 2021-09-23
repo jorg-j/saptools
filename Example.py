@@ -6,7 +6,7 @@ import sys
 import saptools
 
 # Connection to SAP
-session = saptools.SAPConnect()
+session = saptools.SAP_connect()
 
 try:
     session.findById("wnd[0]").maximize() # SAP Session is Maximised
