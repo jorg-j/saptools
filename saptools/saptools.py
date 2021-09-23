@@ -11,20 +11,9 @@ Dependencies:
 Currently Tested on SAP GUI 7
 """
 
-
-import logging
 import sys
 
 import win32com.client
-
-logging.basicConfig(
-    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
-    filename="SAP.log",
-    filemode="a",
-    level=logging.INFO,
-)
-logger = logging.getLogger(__name__)
-logger.info("Starting saptools")
 
 
 # -----------------------------------------------------------------------
@@ -32,13 +21,12 @@ logger.info("Starting saptools")
 ############################# Connection ###############################
 
 
-def SAPConnect(SessionID=0):
+def SAP_connect(SessionID=0):
     """
     Manages connection between Py and SAP
     """
 
     try:
-        logger.info("Connecting to SAP")
         SapGuiAuto = win32com.client.GetObject("SAPGUI")
         application = SapGuiAuto.GetScriptingEngine
         if not type(application) == win32com.client.CDispatch:
@@ -52,10 +40,7 @@ def SAPConnect(SessionID=0):
             connection = None
             application = None
             SapGuiAuto = None
-        logger.info("SAP Connected")
         return session
-
     except:
         print(sys.exc_info()[0])
-        logger.critical("SAP Connection Failed")
         return "Disconnected"

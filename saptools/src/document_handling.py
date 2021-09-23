@@ -22,12 +22,12 @@ def writer(line, Mode="a+", OutName="outfile.py"):
 ########################## Document Selector ###########################
 
 
-def DocumentSelect():
+def document_select():
     root = Tk()
     root.filename = filedialog.askopenfilename()
     filepath = root.filename
     root.destroy()
-    data = ReadData(filepath=filepath)
+    data = read_data(filepath=filepath)
     return data
 
 
@@ -36,7 +36,7 @@ def DocumentSelect():
 ############################## Read File ##############################
 
 
-def ReadData(filepath):
+def read_data(filepath):
     with open(filepath, "r") as f:
         data = f.read()
     data = data.split("\n")
