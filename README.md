@@ -34,5 +34,5 @@ from saptools import saptools
 session = saptools.SAP_connect()
 
 # Session 1
-session = saptools.SAP_connect()(1)
+session = saptools.SAP_connect(1)
 ```
