@@ -7,15 +7,16 @@ Python SAP integration.
 
 SAPConverter.py takes SAP GUI scripts and converts to drag and drop py.
 
-Run SAPConverter.py open the file for conversion and outfile.py file will contain code you can drag and drop into your project.
 
-For CLI interaction:
+Usage:
 
 ```
-SAPConverter.py -f myInFile.vbs -o myOutFile.py
+from saptools import sap_converter
+
+sap_converter.convert_file(Document="myVBSscript.vbs", out_file="converted.py")
 ```
 
--f and -o are optional and each option will fall back to it's default if not used
+
 
 ## Connection to SAP
 
@@ -26,9 +27,12 @@ Connection defaults to session 0.
 To connect to other sessions of SAP send session number as Argument:
 
 ```
+from saptools import saptools
+
+
 # Session 0
-session = saptools.SAPConnect()
+session = saptools.SAP_connect()
 
 # Session 1
-session = saptools.SAPConnect(1)
+session = saptools.SAP_connect()(1)
 ```
