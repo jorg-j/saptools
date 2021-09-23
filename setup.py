@@ -29,7 +29,7 @@ setup(
     packages=find_packages(where="SAPTOOLS"),
     package_dir={"": "SAPTOOLS"},
     test_suite="tests",
-    install_requires=["pywin32"],
+    install_requires=["pywin32", "logging"],
     keywords="",
     classifiers=[
         "License :: OSI Approved :: MIT License",
