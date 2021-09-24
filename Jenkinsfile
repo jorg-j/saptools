@@ -2,7 +2,7 @@ pipeline {
     agent any
     environment {
         HOST="jack@192.168.1.161"
-        REPO=""
+        REPO="https://github.com/jorg-j/saptools.git"
         build_path="/home/jack/jenkins/build"
 
     }
@@ -18,7 +18,7 @@ pipeline {
         stage('Pull From Git') {
             steps {
                 // Get some code from a GitHub repository
-                git credentialsId: 'git-token', url: ${REPO}
+                git credentialsId: 'git-token', url: '${REPO}'
             }
         }
         stage('Ensuring Build Directory Is Setup') {
