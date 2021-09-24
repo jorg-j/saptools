@@ -2,7 +2,7 @@
 
 import unittest
 
-from src.rules import vbsConverter
+from ..src.rules import vbsConverter
 
 
 class TestSum(unittest.TestCase):
