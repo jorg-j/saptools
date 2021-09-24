@@ -4,6 +4,7 @@ pipeline {
         HOST="jack@192.168.1.161"
         REPO="https://github.com/jorg-j/saptools.git"
         build_path="/home/jack/jenkins/build"
+        TESTS="saptools/tests"
 
     }
     stages {
@@ -30,6 +31,19 @@ pipeline {
         stage('Sending to Server') {
             steps {
                 sh 'scp -r * ${HOST}:${build_path}/'
+            }
+        }
+
+        stage('Preparing VENV') {
+            steps {
+                sh '''
+                ssh -t ${HOST} 'bash -s << 'ENDSSH'
+                cd ${pathway}; pip install virtualenv --user; virtualenv venv
+                . venv/bin/activate
+                pip3 install nose
+                nosetests ${TESTS}
+ENDSSH'
+                '''
             }
         }
 
