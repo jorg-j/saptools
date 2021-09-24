@@ -34,7 +34,7 @@ pipeline {
             }
         }
 
-        stage('Preparing VENV') {
+        stage('Preparing Running Tests') {
             steps {
                 sh '''
                 ssh -t ${HOST} 'bash -s << 'ENDSSH'
@@ -46,6 +46,13 @@ ENDSSH'
                 '''
             }
         }
+
+        stage('Cleaning Up') {
+            steps {
+                sh 'ssh ${HOST} "cd ${build_path}; rm -r *"'
+            }
+        }
+
 
         //stage('Running Load to DB,') {
         //    steps {
