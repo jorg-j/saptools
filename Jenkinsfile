@@ -38,7 +38,7 @@ pipeline {
             steps {
                 sh '''
                 ssh -t ${HOST} 'bash -s << 'ENDSSH'
-                cd ${pathway}; pip install virtualenv --user; virtualenv venv
+                cd $build_path; pip install virtualenv --user; virtualenv venv
                 . venv/bin/activate
                 pip3 install nose
                 nosetests saptools/tests
