@@ -1,7 +1,7 @@
 """
 Rules for conversion.
 """
-
+import os
 
 ######################### VBS Converter Rules ##########################
 
@@ -22,8 +22,11 @@ def vbsConverter(SAPVB):
 
     """
     needsParenthesis = []
+    currentdir = os.path.dirname(os.path.realpath(__file__))
+    parentdir = os.path.dirname(currentdir)
+    import_file = os.path.join(parentdir, "config/parenthesis.txt")
 
-    with open("config/parenthesis.txt", "r") as parenthFile:
+    with open(import_file, "r") as parenthFile:
         filecontents = parenthFile.readlines()
 
         for line in filecontents:
