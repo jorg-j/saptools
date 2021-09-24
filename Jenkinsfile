@@ -18,7 +18,7 @@ pipeline {
         stage('Pull From Git') {
             steps {
                 // Get some code from a GitHub repository
-                git credentialsId: 'git-token', url: '${REPO}'
+                git credentialsId: 'git-token', url: 'REPO'
             }
         }
         stage('Ensuring Build Directory Is Setup') {
