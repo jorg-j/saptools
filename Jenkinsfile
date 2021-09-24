@@ -41,7 +41,7 @@ pipeline {
                 cd ${pathway}; pip install virtualenv --user; virtualenv venv
                 . venv/bin/activate
                 pip3 install nose
-                nosetests ${TESTS}
+                nosetests saptools/tests
 ENDSSH'
                 '''
             }
